@@ -15,6 +15,12 @@ private:
 
 	sf::RenderWindow m_window;
 
+	//The main veiw
+	sf::View m_MainView;
+	sf::View m_LeftView;
+	sf::View m_RightView;
+
+
 	sf::View m_BGMainView;
 	sf::View m_BGLeftView;
 	sf::View m_BGRightView;
@@ -37,18 +43,10 @@ private:
 
 
 public:
+	Engine();
 
-
+	void run();
 
 };
-
-
-
-
-
-
-
-
-
 
 #endif ENGINE_H
