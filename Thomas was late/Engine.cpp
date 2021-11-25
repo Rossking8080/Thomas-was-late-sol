@@ -19,7 +19,7 @@ Engine::Engine()
 	m_BGLeftView.setViewport(sf::FloatRect(0.001f, 0.001f, 0.498f, 0.998f));
 	m_BGRightView.setViewport(sf::FloatRect(0.5f, 0.001f, 0.499f, 0.998f));
 
-	m_backgroundTexture = TextureHolder::GetTexture("graphics/background.png");
+	m_backgroundTexture = TextureHolder::GetTexture("Assets/graphics/background.png");
 	m_BackgroundSprite.setTexture(m_backgroundTexture);
 }
 
@@ -40,41 +40,6 @@ void Engine::run()
 	}
 }
 
-void Engine::input()
-{
-	sf::Event event;
-
-	while (m_window.pollEvent(event))
-	{
-		if (event.type == sf::Event::KeyPressed)
-		{
-			//Quiting
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			{
-				m_window.close();
-			}
-
-			//starting
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-			{
-				m_isPlaying = true;
-			}
-
-			//swap characters
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-			{
-				m_Character1 = !m_Character1;
-			}
-
-			//Swich full/split screen
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-			{
-				m_isSplitScreen = !m_isSplitScreen;
-			}
-		}
-	}
-}
-
 void Engine::draw()
 {
 	m_window.clear(sf::Color::White);
@@ -83,16 +48,22 @@ void Engine::draw()
 		m_window.setView(m_BGMainView);
 		m_window.draw(m_BackgroundSprite);
 		m_window.setView(m_MainView);
+		m_window.draw(m_Thomas.getSprite());
+		m_window.draw(m_Bob.getSprite());
 	}
 	else
 	{
 		m_window.setView(m_BGLeftView);
 		m_window.draw(m_BackgroundSprite);
 		m_window.setView(m_LeftView);
+		m_window.draw(m_Bob.getSprite());
+		m_window.draw(m_Thomas.getSprite());
 
 		m_window.setView(m_BGRightView);
 		m_window.draw(m_BackgroundSprite);
 		m_window.setView(m_RightView);
+		m_window.draw(m_Thomas.getSprite());
+		m_window.draw(m_Bob.getSprite());
 	}
 
 	//Draw the hud
